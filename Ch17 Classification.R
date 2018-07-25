@@ -8,6 +8,8 @@
 
 par(ask=TRUE)
 
+pacman::p_load(rpart, rpart.plot, party, randomForest, e1071)
+
 # Listing 17.1 - Prepare the breast cancer data
 loc <- "http://archive.ics.uci.edu/ml/machine-learning-databases/"
 ds  <- "breast-cancer-wisconsin/breast-cancer-wisconsin.data"
@@ -140,15 +142,22 @@ performance(svm.perf)
 
 
 # Using Rattle Package for data mining
+# 자료가 더 이상 존재하지 않음.
+# loc <- "http://archive.ics.uci.edu/ml/machine-learning-databases/"
+# ds <- "pima-indians-diabetes/pima-indians-diabetes.data"
+# url <- paste(loc, ds, sep="")
+# diabetes <- read.table(url, sep=",", header=FALSE)
+# names(diabetes) <- c("npregant", "plasma", "bp", "triceps",
+#                      "insulin", "bmi", "pedigree", "age", "class")
+# diabetes$class <- factor(diabetes$class, levels=c(0,1),
+#                          labels=c("normal", "diabetic"))
 
-loc <- "http://archive.ics.uci.edu/ml/machine-learning-databases/"
-ds <- "pima-indians-diabetes/pima-indians-diabetes.data"
-url <- paste(loc, ds, sep="")
-diabetes <- read.table(url, sep=",", header=FALSE)
-names(diabetes) <- c("npregant", "plasma", "bp", "triceps",
-                     "insulin", "bmi", "pedigree", "age", "class")
+# 180725 djy
+diabetes <- read.csv("~/GitHub/RiA2/diabetes.csv", header = TRUE)
 diabetes$class <- factor(diabetes$class, levels=c(0,1),
                          labels=c("normal", "diabetic"))
+head(diabetes)
+
 library(rattle)
 rattle()
 
